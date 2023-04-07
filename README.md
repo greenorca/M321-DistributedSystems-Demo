@@ -1,30 +1,40 @@
 
-# Reads
+# MQTT-Demo with Docker-MQTT-Broker and local clients
 
-Install MQTT Broker as Docker Machine
+## Installation
 
+### MQTT Broker as Docker Machine
+
+```bash
 docker-compose up
+```
 
-# Install Clients locally
+### Install Clients locally
 
+```bash
 sudo apt-get install mosquitto-clients
-
+```
 # Test
 
 ## Subscribe to a topic in Terminal 1
 
+```bash
 mosquitto_sub -v -t 'test/topic'
+```
 
 ## Publish messages on another Terminal
 
+```bash
 mosquitto_pub -t 'test/topic' -m 'helloWorld'
+```
 
 ## Publish random data on topic *sensors/1* in a loop
 
+```bash
 while true; do mosquitto_pub -t 'sensors/1' -m $((1 + RANDOM % 10)); sleep 1; done
+```
 
-
-# Grafana
+# Visualization using Grafana
 
 * install locally: https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/
 
@@ -56,4 +66,4 @@ sudo dpkg -i grafana_9.4.7_amd64.deb
 	- new panel
 	- using mqtt data source
 
-	![](img/2023-01-23-11-05-03.png)
+	![](img/2023-04-07-10-32-41.png)
