@@ -3,7 +3,7 @@
 
 Install MQTT Broker as Docker Machine
 
-docker-compose up 
+docker-compose up
 
 # Install Clients locally
 
@@ -19,22 +19,22 @@ mosquitto_sub -v -t 'test/topic'
 
 mosquitto_pub -t 'test/topic' -m 'helloWorld'
 
-## Publish in a loop
+## Publish random data on topic *sensors/1* in a loop
 
-while true; do mosquitto_pub -t aria -m $((1 + RANDOM % 10)) -u aria -P aria; sleep 1; done
+while true; do mosquitto_pub -t 'sensors/1' -m $((1 + RANDOM % 10)); sleep 1; done
 
 
 # Grafana
 
 * install locally: https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/
 
-* as of January 2023, better install fixed (older) version to prevent errors like...:
+* as of April 2023 install fixed version:
 
 sudo apt-get install -y adduser libfontconfig1
-wget https://dl.grafana.com/oss/release/grafana_9.1.2_amd64.deb
-sudo dpkg -i grafana_9.1.2_amd64.deb
+wget https://dl.grafana.com/oss/release/grafana_9.4.7_amd64.deb
+sudo dpkg -i grafana_9.4.7_amd64.deb
 
-* install mqtt plugin: 
+* install mqtt plugin:
 
 	```bash
 	docker exec mosquitto-mqtt_grafana_1 sh -c "grafana-cli plugins install grafana-mqtt-datasource"
@@ -54,6 +54,6 @@ sudo dpkg -i grafana_9.1.2_amd64.deb
 
 * add new dashboard
 	- new panel
-	- using mqtt data source 
+	- using mqtt data source
 
 	![](img/2023-01-23-11-05-03.png)

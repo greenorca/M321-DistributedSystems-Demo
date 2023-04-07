@@ -12,14 +12,15 @@ services:
       - ./log:/mosquitto/log
     networks:
       m321_sq2:
-            
-  grafana:
-    image: grafana/grafana-oss:latest
-    ports:
-      - "3000:3000"
-    networks:
-      m321_sq2:
-      
+
+  # as of April 2023, grafana monitoring freezes after a few minutes....         
+  #grafana:
+  #  image: grafana/grafana-oss:latest
+  #  ports:
+  #    - "3000:3000"
+  #  networks:
+  #    m321_sq2:
+
 
 networks:
   m321_sq2:
